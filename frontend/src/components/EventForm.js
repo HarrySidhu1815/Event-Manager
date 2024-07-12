@@ -2,6 +2,8 @@ import { Form, json, redirect, useActionData, useNavigate } from 'react-router-d
 
 import classes from './EventForm.module.css';
 
+const server = import.meta.env.REACT_SERVER_URL
+
 function EventForm({ method, event }) {
   const data = useActionData()
   const navigate = useNavigate();
@@ -53,10 +55,10 @@ export async function action({request, params}){
       date: data.get('date'),
       description: data.get('description')
   }
-  let url = 'http://localhost:8080/events'
+  let url = `${server}/events`
 
   if(method === 'PATCH'){
-    url = 'http://localhost:8080/events/' + id
+    url = `${server}/events/` + id
   }
   const response = await fetch(url, {
       method: method,

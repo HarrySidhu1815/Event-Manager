@@ -2,6 +2,8 @@ import { Await, defer, json, useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 import { Suspense } from 'react';
 
+const server = import.meta.env.REACT_SERVER_URL
+
 function EventsPage() {
   const {events} = useLoaderData()
   
@@ -15,7 +17,7 @@ function EventsPage() {
 }
 
 async function loadedEvent(){
-  const response = await fetch("http://localhost:8080/events");
+  const response = await fetch(`${server}/events`);
   if (!response.ok) {
     throw json({message: 'Could not fetch the data'}, {status: 500})
   } else {

@@ -3,6 +3,8 @@ import { Await, json, redirect, useRouteLoaderData, defer } from 'react-router-d
 import EventItem from '../components/EventItem'
 import EventsList from '../components/EventsList'
 
+const server = import.meta.env.REACT_SERVER_URL
+
 const EventDetailPage = () => {
     const {event, events} = useRouteLoaderData('event-detail')
     
@@ -22,7 +24,7 @@ const EventDetailPage = () => {
   )
 }
 async function loadEvent(id){
-    const response = await fetch('http://localhost:8080/events/' + id)
+    const response = await fetch(`${server}/events/` + id)
     if(!response.ok){
         throw json({message: 'Could not fetch the event details'} , { status: 500})
     } else {
@@ -31,7 +33,7 @@ async function loadEvent(id){
     }
 }
 async function loadedEvents(){
-    const response = await fetch("http://localhost:8080/events");
+    const response = await fetch(`${server}/events`);
     if (!response.ok) {
       throw json({message: 'Could not fetch the data'}, {status: 500})
     } else {
@@ -50,7 +52,7 @@ export async function loader({request, params}){
 export async function action({request, params}){
     const id = params.id
 
-    const response = await fetch('http://localhost:8080/events/' + id , {
+    const response = await fetch(`${server}/events/` + id , {
         method: request.method
     })
     if(!response.ok){
