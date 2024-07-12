@@ -2,7 +2,7 @@ import { Form, json, redirect, useActionData, useNavigate } from 'react-router-d
 
 import classes from './EventForm.module.css';
 
-const server = import.meta.env.REACT_SERVER_URL
+const server = import.meta.env.REACT_APP_SERVER_URL
 
 function EventForm({ method, event }) {
   const data = useActionData()

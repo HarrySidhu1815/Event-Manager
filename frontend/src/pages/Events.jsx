@@ -2,7 +2,7 @@ import { Await, defer, json, useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 import { Suspense } from 'react';
 
-const server = import.meta.env.REACT_SERVER_URL
+const server = import.meta.env.REACT_APP_SERVER_URL
 
 function EventsPage() {
   const {events} = useLoaderData()

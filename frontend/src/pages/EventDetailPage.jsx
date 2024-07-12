@@ -3,7 +3,7 @@ import { Await, json, redirect, useRouteLoaderData, defer } from 'react-router-d
 import EventItem from '../components/EventItem'
 import EventsList from '../components/EventsList'
 
-const server = import.meta.env.REACT_SERVER_URL
+const server = import.meta.env.REACT_APP_SERVER_URL
 
 const EventDetailPage = () => {
     const {event, events} = useRouteLoaderData('event-detail')
